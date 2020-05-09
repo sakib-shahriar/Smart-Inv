@@ -12,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 
 @Configuration
-@ComponentScan({"com.ssdev"})
+@ComponentScan({"com.ssdev.samrtinv"})
 @EnableWebMvc
 public class Config implements WebMvcConfigurer {
     @Override
