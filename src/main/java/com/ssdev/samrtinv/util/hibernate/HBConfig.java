@@ -1,5 +1,7 @@
 package com.ssdev.samrtinv.util.hibernate;
 
+import com.ssdev.samrtinv.model.product.Product;
+import com.ssdev.samrtinv.model.system.SystemInfo;
 import com.ssdev.samrtinv.model.user.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -19,10 +21,12 @@ public class HBConfig {
         setting.put(Environment.USER, "root");
         setting.put(Environment.PASS, "");
         setting.put(Environment.SHOW_SQL, "true");
-        setting.put(Environment.HBM2DDL_AUTO, "create");
+        setting.put(Environment.HBM2DDL_AUTO, "update");
         configuration.setProperties(setting);
 
+        configuration.addAnnotatedClass(SystemInfo.class);
         configuration.addAnnotatedClass(User.class);
+        configuration.addAnnotatedClass(Product.class);
 
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                 .applySettings(configuration.getProperties()).build();

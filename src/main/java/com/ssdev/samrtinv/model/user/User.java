@@ -1,12 +1,14 @@
 package com.ssdev.samrtinv.model.user;
 
+import com.ssdev.samrtinv.model.common.BaseModel;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "user")
-public class User {
+public class User extends BaseModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @Column(name = "first_name", length = 50)
@@ -20,6 +22,9 @@ public class User {
 
     @Column(length = 500)
     private String password;
+
+    @Column(nullable = false)
+    private Role role;
 
     public User() { }
 
@@ -63,4 +68,11 @@ public class User {
         this.password = password;
     }
 
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Role getRole() {
+        return role;
+    }
 }
