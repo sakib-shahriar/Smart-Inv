@@ -35,6 +35,9 @@ public class SystemInfoDao {
             session.save(systemInfo);
             transaction.commit();
         } catch (Exception ex) {
+            if(transaction != null) {
+                transaction.rollback();
+            }
             ex.printStackTrace();
         }
     }

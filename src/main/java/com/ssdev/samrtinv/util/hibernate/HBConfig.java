@@ -1,6 +1,7 @@
 package com.ssdev.samrtinv.util.hibernate;
 
 import com.ssdev.samrtinv.model.product.Product;
+import com.ssdev.samrtinv.model.product.ProductItem;
 import com.ssdev.samrtinv.model.system.SystemInfo;
 import com.ssdev.samrtinv.model.user.User;
 import org.hibernate.SessionFactory;
@@ -27,6 +28,7 @@ public class HBConfig {
         configuration.addAnnotatedClass(SystemInfo.class);
         configuration.addAnnotatedClass(User.class);
         configuration.addAnnotatedClass(Product.class);
+        configuration.addAnnotatedClass(ProductItem.class);
 
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                 .applySettings(configuration.getProperties()).build();

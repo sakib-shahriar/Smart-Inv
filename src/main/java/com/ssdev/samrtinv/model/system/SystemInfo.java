@@ -23,8 +23,6 @@ public class SystemInfo {
     @Column(name = "data_initialized", nullable = false)
     private Boolean dataInitialized;
 
-    public SystemInfo() {}
-
     public Long getId() {
         return id;
     }

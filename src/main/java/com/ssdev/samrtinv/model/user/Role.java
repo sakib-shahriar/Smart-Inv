@@ -1,8 +1,18 @@
 package com.ssdev.samrtinv.model.user;
 
 public enum Role {
-    ADMIN,
-    USER,
-    GUEST,
-    MANAGER;
+    ADMIN("Admin"),
+    USER("User"),
+    GUEST("Guest"),
+    MANAGER("Manager");
+
+    private String name;
+
+    Role(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

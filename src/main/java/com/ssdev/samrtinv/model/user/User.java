@@ -26,8 +26,6 @@ public class User extends BaseModel {
     @Column(nullable = false)
     private Role role;
 
-    public User() { }
-
     public Long getId() {
         return id;
     }

@@ -2,6 +2,7 @@ package com.ssdev.samrtinv.model.product;
 
 import com.ssdev.samrtinv.model.common.BaseModel;
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "product")
@@ -16,7 +17,8 @@ public class Product extends BaseModel {
     @Column(length = 50, nullable = false)
     private String code;
 
-    public Product() { }
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<ProductItem> productItems;
 
     public Long getId() {
         return id;
