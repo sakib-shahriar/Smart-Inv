@@ -1,5 +1,7 @@
 package com.ssdev.samrtinv.util.hibernate;
 
+import com.ssdev.samrtinv.model.product.CompoundPrice;
+import com.ssdev.samrtinv.model.product.Price;
 import com.ssdev.samrtinv.model.product.Product;
 import com.ssdev.samrtinv.model.product.ProductItem;
 import com.ssdev.samrtinv.model.system.SystemInfo;
@@ -29,6 +31,8 @@ public class HBConfig {
         configuration.addAnnotatedClass(User.class);
         configuration.addAnnotatedClass(Product.class);
         configuration.addAnnotatedClass(ProductItem.class);
+        configuration.addAnnotatedClass(Price.class);
+        configuration.addAnnotatedClass(CompoundPrice.class);
 
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                 .applySettings(configuration.getProperties()).build();
