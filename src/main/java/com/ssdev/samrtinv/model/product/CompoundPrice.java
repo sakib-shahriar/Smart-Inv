@@ -5,6 +5,7 @@ import com.ssdev.samrtinv.model.common.BaseModel;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "compound_price")
 public class CompoundPrice extends BaseModel {
     @Id
     private Long id;
