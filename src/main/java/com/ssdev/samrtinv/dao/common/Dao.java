@@ -4,6 +4,7 @@ import com.ssdev.samrtinv.dao.common.lambdainterface.ReadGenericSessionTask;
 import com.ssdev.samrtinv.dao.common.lambdainterface.ReadSessionTask;
 import com.ssdev.samrtinv.dao.common.lambdainterface.SessionTask;
 import com.ssdev.samrtinv.model.common.BaseModel;
+import com.ssdev.samrtinv.model.common.Status;
 import com.ssdev.samrtinv.util.exception.SmartInvException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -18,13 +19,45 @@ public abstract class Dao<T extends BaseModel> implements BaseDao<T> {
     private SessionFactory sessionFactory;
 
     public T get(Long id) {
-        return read((session -> session.get(getModelClass(), id)));
+        return read((session -> {
+            String hql = String.format("from %s where status!=:st and id=:id", getModelClass().getSimpleName());
+            Query<T> query = session.createQuery(hql, getModelClass());
+            query.setParameter("id", id);
+            query.setParameter("st", Status.DELETED);
+            return query.uniqueResult();
+        }));
+    }
+
+    public T get(Long id, Boolean statusCheck) {
+        return read((session -> {
+            String clause = statusCheck ? "and status!=:st" : "";
+            String hql = String.format("from %s where id=:id %s", getModelClass().getSimpleName(), clause);
+            Query<T> query = session.createQuery(hql, getModelClass());
+            query.setParameter("id", id);
+            if(statusCheck) {
+                query.setParameter("st", Status.DELETED);
+            }
+            return query.uniqueResult();
+        }));
     }
 
     public List<T> getAll() {
         return readAll(session -> {
-            String hql = String.format("from %s", getModelClass().getSimpleName());
+            String hql = String.format("from %s where status!=:st", getModelClass().getSimpleName());
             Query<T> query = session.createQuery(hql, getModelClass());
+            query.setParameter("st", Status.DELETED);
+            return query.list();
+        });
+    }
+
+    public List<T> getAll(Boolean statusCheck) {
+        return readAll(session -> {
+            String clause = statusCheck ? "where status!=:st" : "";
+            String hql = String.format("from %s %s", getModelClass().getSimpleName(), clause);
+            Query<T> query = session.createQuery(hql, getModelClass());
+            if(statusCheck) {
+                query.setParameter("st", Status.DELETED);
+            }
             return query.list();
         });
     }

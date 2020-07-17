@@ -47,7 +47,7 @@ public class HomeController {
     @RequestMapping(value = "logout", method = RequestMethod.GET)
     public RedirectView logout(HttpServletRequest request, RedirectAttributes attributes) {
         this.userService.logout(request);
-        attributes.addFlashAttribute("message", "Wrong email or password");
+        attributes.addFlashAttribute("message", "Log out successful");
         return new RedirectView("login");
     }
 }
