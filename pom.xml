@@ -10,7 +10,6 @@
     <packaging>war</packaging>
 
     <name>Smart-Inv</name>
-<!--    <url>http://www.example.com</url>-->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>14</maven.compiler.source>
@@ -33,6 +32,11 @@
             <artifactId>jsp-api</artifactId>
             <version>2.2.1-b03</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
