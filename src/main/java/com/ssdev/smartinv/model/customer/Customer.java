@@ -13,19 +13,53 @@ public class Customer extends BaseModel {
     private Long id;
 
     @Column(name = "first_name", length = 50, nullable = false)
-    private String firstName;
-
-    @Column(name = "last_name", length = 50)
-    private String lastName;
+    private String name;
 
     private String email;
-
-    @Column(length = 15)
-    private String mobile;
 
     @Column(length = 15)
     private String phone;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 }

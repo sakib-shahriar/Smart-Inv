@@ -12,8 +12,8 @@ public class Address extends BaseModel {
     @Column(length = 50)
     private String city;
 
-    @Column(length = 50)
-    private String country;
+    @Column(nullable = false)
+    private Country country;
 
     @Column(length = 200)
     private String details;
@@ -45,11 +45,11 @@ public class Address extends BaseModel {
         this.city = city;
     }
 
-    public String getCountry() {
+    public Country getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
+    public void setCountry(Country country) {
         this.country = country;
     }
 

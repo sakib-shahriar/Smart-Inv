@@ -1,17 +1,20 @@
 package com.ssdev.smartinv.util.security;
 
 import com.ssdev.smartinv.model.user.User;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 public class SessionUtil {
-    public static User getLoggedInUser(HttpServletRequest request) {
-        User user = (User) request.getSession().getAttribute("user");
+    public static User getLoggedInUser() {
+        User user = (User) getSession().getAttribute("user");
         return user;
     }
 
-    public static void setLoggedInUser(HttpServletRequest request, User user) {
-        request.getSession().setAttribute("user", user);
+    public static void setLoggedInUser(User user) {
+        getSession().setAttribute("user", user);
     }
 
     public static void destroySession(HttpServletRequest request) {
@@ -21,11 +24,17 @@ public class SessionUtil {
         }
     }
 
-    public static void put(String key, Object value, HttpServletRequest request) {
-        request.getSession().setAttribute(key, value);
+    public static void put(String key, Object value) {
+        getSession().setAttribute(key, value);
     }
 
     public static Object get(String key, HttpServletRequest request) {
-        return request.getSession().getAttribute(key);
+        return getSession().getAttribute(key);
+    }
+
+    private static HttpSession getSession() {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession();
+        return session;
     }
 }

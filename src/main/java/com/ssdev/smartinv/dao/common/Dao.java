@@ -6,11 +6,14 @@ import com.ssdev.smartinv.dao.common.lambdainterface.SessionTask;
 import com.ssdev.smartinv.model.common.BaseModel;
 import com.ssdev.smartinv.model.common.Status;
 import com.ssdev.smartinv.util.exception.SmartInvException;
+import com.ssdev.smartinv.util.security.SessionUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Date;
 import java.util.List;
 
 public abstract class Dao<T extends BaseModel> implements BaseDao<T> {
@@ -72,13 +75,36 @@ public abstract class Dao<T extends BaseModel> implements BaseDao<T> {
 
     public void save(T obj) {
         doSessionTask(session -> {
-            session.save(obj);
+            if(obj.getCreatedBy() == null) {
+                obj.setCreatedBy(SessionUtil.getLoggedInUser().getId());
+            }
+            if(obj.getCreatedOn() == null) {
+                obj.setCreatedOn(new Date());
+            }
+            if(obj.getVersion() != null) {
+                obj.setUpdatedBy(SessionUtil.getLoggedInUser().getId());
+                obj.setUpdatedOn(new Date());
+            }
+            session.saveOrUpdate(obj);
         });
     }
 
     public void delete(T obj) {
         doSessionTask(session -> {
-            session.delete(obj);
+            obj.setStatus(Status.DELETED);
+            session.update(obj);
+        });
+    }
+
+    public void delete(T obj, Boolean hardDelete) {
+        doSessionTask(session -> {
+            if(hardDelete) {
+                session.delete(obj);
+            }
+            else {
+                obj.setStatus(Status.DELETED);
+                session.update(obj);
+            }
         });
     }
 

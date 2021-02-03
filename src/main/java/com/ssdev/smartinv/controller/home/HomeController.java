@@ -35,7 +35,7 @@ public class HomeController {
     public RedirectView authenticate(@ModelAttribute AuthenticationDTO authenticationDTO, HttpServletRequest request, RedirectAttributes attributes) {
         User user = this.userService.authenticateUser(authenticationDTO);
         if(user != null) {
-            this.userService.doAfterLoginUserTask(user, request);
+            this.userService.doAfterLoginUserTask(user);
             return new RedirectView(request.getContextPath());
         }
         else {

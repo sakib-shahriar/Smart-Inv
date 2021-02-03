@@ -19,7 +19,7 @@ public class SecurityFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-        User user = SessionUtil.getLoggedInUser(request);
+        User user = SessionUtil.getLoggedInUser();
 
         String baseUrl = String.format("%s://%s:%d%s",request.getScheme(),  request.getServerName(), request.getServerPort(), request.getContextPath());
         String loginUrl = baseUrl + LOGIN_URL;

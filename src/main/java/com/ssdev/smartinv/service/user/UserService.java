@@ -18,8 +18,8 @@ public class UserService {
         return this.userDao.isValidUser(authenticationDTO);
     }
 
-    public void doAfterLoginUserTask(User user, HttpServletRequest request) {
-        SessionUtil.setLoggedInUser(request, user);
+    public void doAfterLoginUserTask(User user) {
+        SessionUtil.setLoggedInUser(user);
     }
 
     public void logout(HttpServletRequest request) {
