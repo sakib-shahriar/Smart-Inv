@@ -1,10 +1,8 @@
 package com.ssdev.smartinv.util.common;
 
-import com.ssdev.smartinv.model.common.Country;
 
 import java.util.EnumSet;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class CommonUtil {

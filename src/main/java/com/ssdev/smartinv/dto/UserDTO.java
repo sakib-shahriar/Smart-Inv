@@ -1,26 +1,21 @@
-package com.ssdev.smartinv.model.user;
+package com.ssdev.smartinv.dto;
 
-import com.ssdev.smartinv.model.common.BaseModel;
+import com.ssdev.smartinv.model.user.Role;
 
-import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
-@Entity
-@Table(name = "user")
-public class User extends BaseModel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+public class UserDTO {
     private Long id;
-
-    @Column(length = 50)
+    @NotBlank
     private String name;
-
-    @Column(unique = true, length = 150, nullable = false)
+    @Email
+    @NotBlank
     private String email;
-
-    @Column(length = 500)
+    @NotBlank
     private String password;
-
-    @Column(nullable = false)
+    @NotNull
     private Role role;
 
     public Long getId() {
@@ -55,11 +50,11 @@ public class User extends BaseModel {
         this.password = password;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
     public Role getRole() {
         return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

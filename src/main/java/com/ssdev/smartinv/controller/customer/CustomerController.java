@@ -30,12 +30,14 @@ public class CustomerController {
     private CustomerService customerService;
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String create(@ModelAttribute("fieldNames") ArrayList<String> fieldNames, Model model) {
+    public String create(@ModelAttribute("customerDTO") CustomerDTO customer, @ModelAttribute("fieldNames") ArrayList<String> fieldNames, Model model) {
+        CustomerDTO customerDTO = new CustomerDTO();
         if(!fieldNames.isEmpty()) {
             model.addAttribute("fields", fieldNames);
+            customerDTO = customer;
         }
         Map<String, String> selectItems = CommonUtil.prepareMapForSelect(Country.class);
-        model.addAttribute("customer", new CustomerDTO());
+        model.addAttribute("customer", customerDTO);
         model.addAttribute("selectItems", selectItems);
         return "customer/create";
     }
@@ -74,6 +76,7 @@ public class CustomerController {
             attributes.addAttribute("id", newCustomer.getId());
             return new RedirectView(request.getContextPath() + "/customer/details");
         }
+        attributes.addFlashAttribute("customerDTO", customer);
         attributes.addFlashAttribute("fieldNames", errorFields);
         return new RedirectView(request.getContextPath() + "/customer/create");
     }

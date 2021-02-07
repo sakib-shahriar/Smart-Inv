@@ -34,8 +34,7 @@ public class SystemService {
 
     private User initializeAdmin() {
         User admin = new User();
-        admin.setFirstName("System");
-        admin.setLastName("Admin");
+        admin.setName("System Admin");
         admin.setEmail("admin@email.com");
         admin.setPassword(CryptoUtil.encrypt("admin@123456"));
         admin.setRole(Role.ADMIN);
