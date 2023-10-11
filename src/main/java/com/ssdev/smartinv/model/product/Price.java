@@ -4,7 +4,7 @@ import com.ssdev.smartinv.model.common.BaseModel;
 import com.ssdev.smartinv.model.common.CompoundPrice;
 import com.ssdev.smartinv.model.common.PriceType;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.List;
 
 @Entity

@@ -2,7 +2,7 @@ package com.ssdev.smartinv.model.system;
 
 import com.ssdev.smartinv.model.user.User;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -10,7 +10,7 @@ import java.util.Date;
 public class SystemInfo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne(cascade = CascadeType.ALL)

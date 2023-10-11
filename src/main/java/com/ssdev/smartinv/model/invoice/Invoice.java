@@ -2,14 +2,14 @@ package com.ssdev.smartinv.model.invoice;
 
 import com.ssdev.smartinv.model.common.BaseModel;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "invoice")
 public class Invoice extends BaseModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(length = 100)

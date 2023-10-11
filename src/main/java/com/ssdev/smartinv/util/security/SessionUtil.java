@@ -1,11 +1,11 @@
 package com.ssdev.smartinv.util.security;
 
 import com.ssdev.smartinv.model.user.User;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 public class SessionUtil {
     public static User getLoggedInUser() {

@@ -2,13 +2,13 @@ package com.ssdev.smartinv.model.user;
 
 import com.ssdev.smartinv.model.common.BaseModel;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "user")
 public class User extends BaseModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(length = 50)
@@ -22,6 +22,17 @@ public class User extends BaseModel {
 
     @Column(nullable = false)
     private Role role;
+
+    public User() {
+
+    }
+
+    public User(String name, String email, String password, Role role) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
 
     public Long getId() {
         return id;

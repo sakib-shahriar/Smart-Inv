@@ -4,14 +4,14 @@ import com.ssdev.smartinv.model.common.CompoundPrice;
 import com.ssdev.smartinv.model.product.Price;
 import com.ssdev.smartinv.model.common.PriceType;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "order_price")
 public class OrderPrice {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "price_type", nullable = false)

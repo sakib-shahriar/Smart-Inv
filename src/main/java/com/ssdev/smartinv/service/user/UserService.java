@@ -3,10 +3,10 @@ import com.ssdev.smartinv.dao.user.UserDao;
 import com.ssdev.smartinv.dto.AuthenticationDTO;
 import com.ssdev.smartinv.model.user.User;
 import com.ssdev.smartinv.util.security.SessionUtil;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import javax.servlet.http.HttpServletRequest;
 
 @Repository
 public class UserService {

@@ -1,16 +1,14 @@
 package com.ssdev.smartinv.model.common;
 
-import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Version;
+import jakarta.persistence.*;
 import java.util.Date;
 
 @MappedSuperclass
 public class BaseModel {
-    @Column(name = "created_by", nullable = false)
+    @Column(name = "created_by")
     private Long createdBy;
 
-    @Column(name = "created_on", nullable = false)
+    @Column(name = "created_on")
     private Date createdOn;
 
     @Column(name = "updated_on")

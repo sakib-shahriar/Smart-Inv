@@ -26,13 +26,14 @@ public class HBConfig {
     public static SessionFactory sessionFactory() {
         Configuration configuration = new Configuration();
         Properties setting = new Properties();
-        setting.put(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
-        setting.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
+        setting.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
+        setting.put(Environment.DIALECT, "org.hibernate.dialect.MySQLDialect");
         setting.put(Environment.URL, "jdbc:mysql://localhost:3306/smartinv");
         setting.put(Environment.USER, "root");
-        setting.put(Environment.PASS, "");
+        setting.put(Environment.PASS, "1234");
         setting.put(Environment.SHOW_SQL, "true");
-        setting.put(Environment.HBM2DDL_AUTO, "update");
+        setting.put(Environment.HBM2DDL_AUTO, "create");
+        setting.put(Environment.FLUSH_MODE, "AUTO");
         setting.put(Environment.GLOBALLY_QUOTED_IDENTIFIERS, true);
         configuration.setProperties(setting);
 
@@ -53,8 +54,7 @@ public class HBConfig {
 
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                 .applySettings(configuration.getProperties()).build();
-        SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 
-        return sessionFactory;
+        return configuration.buildSessionFactory(serviceRegistry);
     }
 }

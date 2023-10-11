@@ -5,14 +5,14 @@ import com.ssdev.smartinv.model.common.Item;
 import com.ssdev.smartinv.model.common.UOM;
 import com.ssdev.smartinv.model.product.ProductItem;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "order_item")
 public class OrderItem extends BaseModel implements Item {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(length = 50, nullable = false)

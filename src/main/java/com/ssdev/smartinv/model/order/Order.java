@@ -3,14 +3,14 @@ package com.ssdev.smartinv.model.order;
 import com.ssdev.smartinv.model.common.BaseModel;
 import com.ssdev.smartinv.model.customer.Customer;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "order")
 public class Order extends BaseModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(length = 100)

@@ -5,14 +5,14 @@ import com.ssdev.smartinv.model.common.CompoundPrice;
 import com.ssdev.smartinv.model.common.PriceType;
 import com.ssdev.smartinv.model.order.OrderPrice;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "invoice_price")
 public class InvoicePrice extends BaseModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "price_type", nullable = false)

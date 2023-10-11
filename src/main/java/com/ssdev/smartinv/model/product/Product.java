@@ -1,14 +1,14 @@
 package com.ssdev.smartinv.model.product;
 
 import com.ssdev.smartinv.model.common.BaseModel;
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "product")
 public class Product extends BaseModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(length = 100, nullable = false)

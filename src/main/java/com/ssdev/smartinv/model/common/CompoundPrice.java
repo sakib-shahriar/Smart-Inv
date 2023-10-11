@@ -1,5 +1,5 @@
 package com.ssdev.smartinv.model.common;
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "compound_price")
